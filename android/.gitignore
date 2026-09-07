@@ -1,7 +1,0 @@
-/.gradle
-/captures/
-local.properties
-GeneratedPluginRegistrant.java
-key.properties
-app/*.jks
-app/*.keystore

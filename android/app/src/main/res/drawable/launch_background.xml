@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- The drawable used by LaunchTheme: a flat background in the app's surface
+     color. The Flutter splash (drawn inside the app itself) renders on top of
+     this once the engine is ready. -->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@android:color/white" />
+    <item android:drawable="@color/splash_bg_light" />
+    <item android:gravity="center">
+        <bitmap
+            android:gravity="center"
+            android:src="@mipmap/ic_launcher" />
+    </item>
 </layer-list>
