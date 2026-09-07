@@ -26,7 +26,7 @@ workflows:
         - pattern: master
           include: source
         - pattern: develop
-          include: source
+          include: true
       cancel_previous_builds: true
     scripts:
       - name: Flutter version
