@@ -263,6 +263,8 @@ class AppController extends ChangeNotifier {
     List<int> repeatDays = const <int>[],
     int weeklyGoal = 7,
     bool reminder = false,
+    int reminderHour = 9,
+    int reminderMinute = 0,
   }) async {
     final now = DateTime.now();
     final habit = HabitModel(

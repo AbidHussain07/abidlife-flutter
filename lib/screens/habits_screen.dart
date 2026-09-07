@@ -296,6 +296,7 @@ class _HabitEditorState extends ConsumerState<_HabitEditor> {
   var _days = <int>[1, 3, 5];
   var _weeklyGoal = 3;
   var _reminder = false;
+  var _reminderTime = const TimeOfDay(hour: 9, minute: 0);
 
   @override
   void dispose() {
@@ -582,7 +583,7 @@ class _HabitDetailScreenState extends ConsumerState<HabitDetailScreen> {
                     ),
                   ],
                 ),
-                const Row(
+                Row(
                   children: <Widget>[
                     for (final day in <String>['M', 'T', 'W', 'T', 'F', 'S', 'S'])
                       Expanded(child: Center(child: Text(day, style: TextStyle(fontSize: 11, fontWeight: FontWeight.w800)))),

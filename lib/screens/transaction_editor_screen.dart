@@ -172,7 +172,7 @@ class _TransactionEditorScreenState extends ConsumerState<TransactionEditorScree
                       child: ListView.separated(
                         scrollDirection: Axis.horizontal,
                         itemCount: moneyCategories.length,
-                        separatorBuilder: (_, _) => const SizedBox(width: 8),
+                        separatorBuilder: (_, __) => const SizedBox(width: 8),
                         itemBuilder: (context, index) {
                           final category = moneyCategories[index];
                           final selected = _category == category;
