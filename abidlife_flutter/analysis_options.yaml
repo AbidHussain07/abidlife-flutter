@@ -1,0 +1,16 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - build/**
+  errors:
+    invalid_use_of_protected_member: ignore
+    invalid_use_of_visible_for_testing_member: ignore
+
+linter:
+  rules:
+    prefer_single_quotes: true
+    use_super_parameters: true
+    avoid_print: true
+    always_use_package_imports: true
+    directives_ordering: true
