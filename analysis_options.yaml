@@ -2,27 +2,15 @@ include: package:flutter_lints/flutter.yaml
 
 analyzer:
   exclude:
-    - "**/*.g.dart"
-    - "**/*.freezed.dart"
-  language:
-    strict-casts: false
-    strict-inference: false
-    strict-raw-types: false
+    - build/**
   errors:
-    invalid_annotation_target: ignore
-    todo: ignore
+    invalid_use_of_protected_member: ignore
+    invalid_use_of_visible_for_testing_member: ignore
 
 linter:
   rules:
+    prefer_single_quotes: true
+    use_super_parameters: true
     avoid_print: true
-    prefer_const_constructors: true
-    prefer_const_literals_to_create_immutables: true
-    prefer_const_declarations: true
-    avoid_unnecessary_containers: true
-    use_key_in_widget_constructors: true
-    sized_box_for_whitespace: true
-    use_decorated_box: true
-    prefer_final_locals: false
-    prefer_final_in_for_each: false
-    public_member_api_docs: false
-    lines_longer_than_80_chars: false
+    always_use_package_imports: true
+    directives_ordering: true

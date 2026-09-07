@@ -1,65 +1,63 @@
-# Codemagic CI/CD configuration for ABIDLIFE Flutter (Android only)
-# Docs: https://docs.codemagic.io/yaml/yaml-getting-started/
-
 workflows:
-  android-apk:
-    name: ABIDLIFE Android APK
-    instance_type: mac_mini_m2
-    max_build_duration: 30
+  android-debug:
+    name: ABIDLIFE Android Debug
+    max_build_duration: 60
     environment:
-      groups:
-        - abidlife_credentials
       flutter: stable
-      vars:
-        PACKAGE_NAME: "com.abidlife.app"
+      java: 17
     cache:
       cache_paths:
         - $FLUTTER_ROOT/.pub-cache
         - $HOME/.gradle/caches
-    triggering:
-      events:
-        - push
-        - tag
-      branch_patterns:
-        - pattern: main
-          include: true
-        - pattern: master
-          include: true
-        - pattern: develop
-          include: true
-      cancel_previous_builds: true
     scripts:
-      - name: Flutter version
-        script: |
-          flutter --version
-      - name: Disable analytics
-        script: |
-          flutter --disable-analytics
-      - name: Clean previous build artifacts
-        script: |
-          flutter clean
-      - name: Fetch dependencies
-        script: |
-          flutter pub get
-      - name: Verify Dart analysis (warnings are non-fatal)
-        script: |
-          flutter analyze || true
-      - name: Run unit tests (optional, non-fatal)
-        script: |
-          flutter test || true
-      - name: Build APK (debug + release)
-        script: |
-          flutter build apk --release --target-platform android-arm,android-arm64,android-x64
+      - name: Get packages
+        script: flutter pub get
+      - name: Generate launcher icons
+        script: dart run flutter_launcher_icons
+      - name: Analyze
+        script: flutter analyze
+      - name: Test
+        script: flutter test
+      - name: Build debug APK
+        script: flutter build apk --debug
     artifacts:
-      - build/**/outputs/**/*.apk
-      - build/**/outputs/**/*.aab
-      - flutter_*.log
-    publishing:
-      email:
-        recipients:
-          - you@example.com
-        notify:
-          success: true
-          failure: true
-      # Optional: push the APK to a Google Drive folder or external artifact store.
-      # See https://docs.codemagic.io/yaml-publishing/google-play/ for Play Store integration.
+      - build/app/outputs/flutter-apk/app-debug.apk
+      - flutter_drive.log
+
+  android-release:
+    name: ABIDLIFE Android Release
+    max_build_duration: 60
+    environment:
+      flutter: stable
+      java: 17
+      groups:
+        - android-signing
+      vars:
+        PACKAGE_NAME: com.abidlife.app
+    scripts:
+      - name: Get packages
+        script: flutter pub get
+      - name: Generate launcher icons
+        script: dart run flutter_launcher_icons
+      - name: Configure signing when credentials exist
+        script: |
+          if [ -n "$CM_KEYSTORE" ]; then
+            echo "$CM_KEYSTORE" | base64 --decode > "$CM_BUILD_DIR/android/app/abidlife-keystore.jks"
+            cat > "$CM_BUILD_DIR/android/key.properties" <<EOF
+          storePassword=$CM_KEYSTORE_PASSWORD
+          keyPassword=$CM_KEY_PASSWORD
+          keyAlias=$CM_KEY_ALIAS
+          storeFile=abidlife-keystore.jks
+          EOF
+          fi
+      - name: Analyze and test
+        script: |
+          flutter analyze
+          flutter test
+      - name: Build release APK and app bundle
+        script: |
+          flutter build apk --release
+          flutter build appbundle --release
+    artifacts:
+      - build/app/outputs/flutter-apk/app-release.apk
+      - build/app/outputs/bundle/release/app-release.aab

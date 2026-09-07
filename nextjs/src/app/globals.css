@@ -1,0 +1,277 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------------------------------- Tokens ---------------------------------- */
+
+:root {
+  --bg: #f5f5f7;
+  --surface: #ffffff;
+  --surface-2: #eef0f4;
+  --surface-3: #e5e8ef;
+  --line: rgba(20, 22, 32, 0.08);
+  --ink: #14161f;
+  --ink-2: #555b6e;
+  --ink-3: #8b91a4;
+
+  --brand: #6e5bff;
+  --amber: #f0a32f;
+  --blue: #3e8bff;
+  --green: #28bd6e;
+  --teal: #11a598;
+  --orange: #ff7a45;
+  --pink: #ef5da8;
+  --red: #ef4444;
+  --income: #0da673;
+  --expense: #f1503f;
+
+  /* note colorways */
+  --note-default: #ffffff;
+  --note-blue: #e9f1ff;
+  --note-purple: #f0ebff;
+  --note-green: #e9f7ee;
+  --note-yellow: #fff3d9;
+  --note-pink: #fdeaf3;
+
+  --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.04),
+    0 8px 24px -12px rgba(16, 24, 40, 0.1);
+  --shadow-pop: 0 24px 60px -16px rgba(16, 24, 40, 0.28);
+}
+
+.dark {
+  --bg: #0a0c11;
+  --surface: #13161f;
+  --surface-2: #1a1e2a;
+  --surface-3: #232839;
+  --line: rgba(255, 255, 255, 0.075);
+  --ink: #f1f3fa;
+  --ink-2: #a3aabd;
+  --ink-3: #676e85;
+
+  --brand: #8b7cff;
+  --amber: #f5b04b;
+  --blue: #62a1ff;
+  --green: #3fd68a;
+  --teal: #2cccc0;
+  --orange: #ff8f63;
+  --pink: #f67fb8;
+  --red: #f87171;
+  --income: #34d896;
+  --expense: #ff7266;
+
+  --note-default: #171b26;
+  --note-blue: #172231;
+  --note-purple: #201c33;
+  --note-green: #182620;
+  --note-yellow: #29220f;
+  --note-pink: #2c1a24;
+
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.03) inset,
+    0 12px 32px -16px rgba(0, 0, 0, 0.6);
+  --shadow-pop: 0 32px 80px -20px rgba(0, 0, 0, 0.75);
+}
+
+@theme inline {
+  --color-app: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-brand: var(--brand);
+  --color-amberx: var(--amber);
+  --color-bluex: var(--blue);
+  --color-greenx: var(--green);
+  --color-tealx: var(--teal);
+  --color-orangex: var(--orange);
+  --color-pinkx: var(--pink);
+  --color-redx: var(--red);
+  --color-income: var(--income);
+  --color-expense: var(--expense);
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* --------------------------------- Basics --------------------------------- */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--brand) 28%, transparent);
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* Rich note content (editor + preview) */
+.note-body h2 {
+  font-weight: 800;
+  font-size: 1.02em;
+  margin: 0.55em 0 0.15em;
+  letter-spacing: -0.01em;
+}
+.note-body p {
+  margin: 0.28em 0;
+}
+.note-body ul {
+  margin: 0.3em 0;
+  padding-left: 1.15em;
+  list-style: disc;
+}
+.note-body ol {
+  margin: 0.3em 0;
+  padding-left: 1.25em;
+  list-style: decimal;
+}
+.note-body li {
+  margin: 0.14em 0;
+}
+.note-body ul.check {
+  list-style: none;
+  padding-left: 0;
+}
+.note-body ul.check li {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.note-body ul.check li::before {
+  content: "";
+  width: 1.05em;
+  height: 1.05em;
+  flex: none;
+  border-radius: 0.38em;
+  border: 1.6px solid var(--ink-3);
+  display: inline-block;
+  transition: all 0.18s ease;
+}
+.note-body ul.check li.done {
+  color: var(--ink-3);
+  text-decoration: line-through;
+}
+.note-body ul.check li.done::before {
+  background: var(--green);
+  border-color: var(--green);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--green) 25%, transparent);
+}
+.note-body b,
+.note-body strong {
+  font-weight: 750;
+}
+.note-body blockquote,
+.note-body [data-align="center"] {
+  text-align: center;
+}
+.note-body [data-align="right"] {
+  text-align: right;
+}
+
+/* -------------------------------- Keyframes -------------------------------- */
+
+@keyframes shimmer {
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+}
+.skeleton {
+  border-radius: 14px;
+  background: linear-gradient(
+    90deg,
+    var(--surface-2) 25%,
+    var(--surface-3) 37%,
+    var(--surface-2) 63%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rise {
+  animation: rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.toast-in {
+  animation: toast-in 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* FAB: always fully above the bottom dock (nav ≈ 64px + 12px offset + 14px
+   gap), and safe-area aware so it never collides with the tabs on any phone. */
+.fab {
+  position: absolute;
+  right: 1.25rem;
+  bottom: calc(92px + env(safe-area-inset-bottom, 0px));
+  z-index: 30;
+}
+
+/* Images embedded in notes */
+.note-body img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+  margin: 0.55em 0;
+  border: 1px solid var(--line);
+}
+
+/* Compact transaction keypad when the soft keyboard shrinks the viewport */
+@media (max-height: 640px) {
+  .txn-amt {
+    font-size: 32px !important;
+  }
+  .txn-pad-key {
+    height: 44px !important;
+    font-size: 20px !important;
+  }
+  .txn-cta {
+    height: 46px !important;
+  }
+  .txn-header {
+    padding-top: 0 !important;
+  }
+}
