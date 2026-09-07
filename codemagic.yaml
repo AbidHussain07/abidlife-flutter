@@ -22,9 +22,9 @@ workflows:
         - tag
       branch_patterns:
         - pattern: main
-          include: source
+          include: true
         - pattern: master
-          include: source
+          include: true
         - pattern: develop
           include: true
       cancel_previous_builds: true
