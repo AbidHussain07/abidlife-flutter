@@ -480,8 +480,8 @@ function SettingsSheet({ open, onClose }: { open: boolean; onClose: () => void }
         <div className="flex items-center gap-3 px-1 pb-4">
           <LumaLogo size={34} />
           <div>
-            <p className="text-[15px] font-extrabold tracking-tight text-ink">ABIDLIFE</p>
-            <p className="text-[11.5px] font-medium text-ink-3">Everything you need, in one place</p>
+            <p className="text-[15px] font-extrabold tracking-tight text-ink">LifeDeck</p>
+            <p className="text-[11.5px] font-medium text-ink-3">Everything you need, in one place for AbidHussain</p>
           </div>
         </div>
 

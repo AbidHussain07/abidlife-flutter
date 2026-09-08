@@ -57,7 +57,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   const BrandMark(size: 34),
                   const SizedBox(width: 10),
                   Text(
-                    'ABIDLIFE',
+                    'LifeDeck',
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   const Spacer(),

@@ -11,7 +11,7 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "ABIDLIFE — Notes, Tasks, Habits & Money",
+  title: "LifeDeck — Notes, Tasks, Habits & Money created by Abidhussain",
   description:
     "Everything you need, in one place. A calm, beautiful home for your notes, tasks, habits and money.",
   appleWebApp: { capable: true, statusBarStyle: "black-translucent" },

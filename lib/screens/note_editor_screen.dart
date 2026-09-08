@@ -26,7 +26,14 @@ class NoteEditorScreen extends ConsumerStatefulWidget {
 class _NoteEditorScreenState extends ConsumerState<NoteEditorScreen> {
   late final TextEditingController _titleController;
   late final QuillController _quillController;
+
+  // Keep these alive for the entire editor screen.
+  // This prevents the keyboard from losing focus during rebuilds.
+  late final FocusNode _editorFocusNode;
+  late final ScrollController _editorScrollController;
+
   Timer? _saveTimer;
+
   var _saving = false;
   var _closing = false;
 
@@ -37,6 +44,8 @@ class _NoteEditorScreenState extends ConsumerState<NoteEditorScreen> {
   @override
   void initState() {
     super.initState();
+    _editorFocusNode = FocusNode();
+    _editorScrollController = ScrollController();
     final note = ref.read(appControllerProvider).notes.firstWhere(
           (item) => item.id == widget.noteId,
         );
@@ -57,9 +66,16 @@ class _NoteEditorScreenState extends ConsumerState<NoteEditorScreen> {
 
   void _scheduleSave() {
     _saveTimer?.cancel();
-    if (mounted) setState(() => _saving = true);
+
+    // Only rebuild when saving actually starts.
+    // Don't rebuild the entire editor on every keystroke.
+    if (mounted && !_saving) {
+      setState(() => _saving = true);
+    }
+
     _saveTimer = Timer(const Duration(milliseconds: 650), _save);
   }
+
 
   Future<void> _save() async {
     if (_closing && !mounted) return;
@@ -87,10 +103,16 @@ class _NoteEditorScreenState extends ConsumerState<NoteEditorScreen> {
   @override
   void dispose() {
     _saveTimer?.cancel();
+
     _titleController.dispose();
     _quillController.dispose();
+
+    _editorFocusNode.dispose();
+    _editorScrollController.dispose();
+
     super.dispose();
   }
+
 
   Future<void> _pickImage(ImageSource source) async {
     final picked = await ImagePicker().pickImage(source: source, imageQuality: 92);
@@ -413,6 +435,8 @@ class _NoteEditorScreenState extends ConsumerState<NoteEditorScreen> {
               Expanded(
                 child: QuillEditor.basic(
                   controller: _quillController,
+                  focusNode: _editorFocusNode,
+                  scrollController: _editorScrollController,
                   config: QuillEditorConfig(
                     placeholder: 'Start writing…',
                     padding: const EdgeInsets.fromLTRB(20, 14, 20, 80),

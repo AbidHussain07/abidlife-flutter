@@ -62,7 +62,7 @@ function Splash() {
         transition={{ delay: 0.2 }}
         className="mt-4 text-[17px] font-extrabold tracking-tight text-ink"
       >
-        ABIDLIFE
+        LifeDeck
       </motion.p>
       <motion.p
         initial={{ opacity: 0 }}
@@ -152,7 +152,7 @@ function Stage() {
         className="pointer-events-none absolute bottom-7 left-8 hidden select-none lg:block"
       >
         <p className="text-[13px] font-extrabold tracking-tight text-white/60">
-          ABIDLIFE
+          LifeDeck
         </p>
         <p className="mt-1 max-w-[220px] text-[11.5px] leading-relaxed text-white/30">
           Notes · Tasks · Habits · Money · Insights — everything you need, in

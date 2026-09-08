@@ -22,7 +22,7 @@ export function fireTaskReminder(title: string) {
   if (typeof window === "undefined" || !("Notification" in window)) return;
   if (Notification.permission !== "granted") return;
   try {
-    new Notification("ABIDLIFE reminder", {
+    new Notification("LifeDeck reminder", {
       body: title,
       icon: "/icon.svg",
       badge: "/icon.svg",

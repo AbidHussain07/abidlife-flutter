@@ -151,7 +151,7 @@ export function Onboarding({ onDone }: { onDone: () => void }) {
         <div className="flex items-center gap-2.5">
           <LumaLogo size={30} />
           <span className="text-[15px] font-extrabold tracking-tight text-ink">
-            ABIDLIFE
+            LifeDeck
           </span>
         </div>
         <button

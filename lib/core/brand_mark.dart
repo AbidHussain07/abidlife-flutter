@@ -8,7 +8,7 @@ class BrandMark extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: 'ABIDLIFE',
+      label: 'LifeDeck',
       image: true,
       child: Container(
         width: size,

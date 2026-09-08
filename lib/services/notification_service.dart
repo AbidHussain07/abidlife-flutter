@@ -17,7 +17,7 @@ class NotificationService {
     android: AndroidNotificationDetails(
       'abidlife_tasks',
       'Task reminders',
-      channelDescription: 'Reminders for tasks you create in ABIDLIFE',
+      channelDescription: 'Reminders for tasks you create in LifeDeck created by Abidhussain',
       importance: Importance.high,
       priority: Priority.high,
       category: AndroidNotificationCategory.reminder,
@@ -107,7 +107,7 @@ class NotificationService {
   }) async {
     await _plugin.zonedSchedule(
       id,
-      'ABIDLIFE reminder',
+      'LifeDeck reminder',
       task.title,
       when,
       _details,
@@ -156,7 +156,7 @@ class NotificationService {
       for (var index = 0; index < days.length; index++) {
         await _plugin.zonedSchedule(
           base + index,
-          'ABIDLIFE habit',
+          'LifeDeck habit',
           'Time for ${habit.name}',
           _nextWeekdayTime(
             days[index],
@@ -184,7 +184,7 @@ class NotificationService {
     }
     await _plugin.zonedSchedule(
       base,
-      'ABIDLIFE habit',
+      'LifeDeck habit',
       'Time for ${habit.name}',
       when,
       _details,

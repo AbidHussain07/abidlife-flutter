@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "ABIDLIFE — Notes, Tasks, Habits & Money",
-    short_name: "ABIDLIFE",
+    name: "LifeDeck — Notes, Tasks, Habits & Money",
+    short_name: "LifeDeck",
     description:
       "Everything you need, in one place. A calm home for your notes, tasks, habits and money.",
     start_url: "/",

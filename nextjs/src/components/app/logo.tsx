@@ -6,7 +6,7 @@ export function LumaLogo({ size = 30 }: { size?: number }) {
       height={size}
       viewBox="0 0 48 48"
       fill="none"
-      aria-label="ABIDLIFE logo"
+      aria-label="LifeDeck logo"
     >
       <rect width="48" height="48" rx="13" fill="url(#abid-g)" />
       {/* crown */}

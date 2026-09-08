@@ -33,7 +33,7 @@ class _AbidLifeAppState extends ConsumerState<AbidLifeApp> {
     final app = ref.watch(appControllerProvider);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'ABIDLIFE',
+      title: 'LifeDeck',
       theme: AppTheme.light(),
       darkTheme: AppTheme.dark(),
       themeMode: app.themeMode,
@@ -70,7 +70,7 @@ class _SplashScreen extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Text(
-              'ABIDLIFE',
+              'LifeDeck',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
             ),
             SizedBox(height: 6),

@@ -340,8 +340,8 @@ class InsightsScreen extends ConsumerWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text('ABIDLIFE', style: TextStyle(fontWeight: FontWeight.w800, fontSize: 16)),
-                    Text('Everything you need, in one place', style: TextStyle(fontSize: 11)),
+                    Text('LifeDeck', style: TextStyle(fontWeight: FontWeight.w800, fontSize: 16)),
+                    Text('Everything you need, in one place for Abidhussain', style: TextStyle(fontSize: 11)),
                   ],
                 ),
               ],
